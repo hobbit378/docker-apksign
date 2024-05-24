@@ -1,2 +1,3 @@
 # apksign-docker
-creates a minimal docker container with the tools necessary to (re-)sign an APK file, including a helper script that allows to perform the necessary steps in one blow, also providing optional  APK patching and batch processing
+Creates an execution environment in a docker container with all tools necessary to (re-)sign an APK file.
+Container includes a helper script to execute all required steps in one blow together with optional  APK patching support.
