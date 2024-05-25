@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # set defaults if no explicit parameters given
-KSTORE=${KSTORE:="${PWD}/kstore"}
+KSTORE=${KSTORE:="${PROJECT_HOME}/kstore"}
 KSPWD=${KSPWD:="stdin"}
 PATCH=${PATCH:=""}
 
@@ -15,10 +15,15 @@ $0	-c | -h
 	-c				create  keystore, set path and continue
 	-k KSTORE		set explicit KSTORE path (default: '${KSTORE}')
 	-p PASSWORD		set password for KSTORE (default: '${KSPWD}')
-	-m PATCH		'modify': apply selected patch to apk
+	-m PATCH		'modify': apply selected patch to apk, e.g. 'Linphone'
 	-v				turn on bash script debugging output
 
 	-h				print usage information
+
+When run within a docker environment make sure to mount project directory on host to container directory ${PROJECT_HOME}
+e.g.
+
+	podman run -it --rm -v <YOURHOSTPROJECTDIR>:${PROJECT_HOME} <IMAGENAME> $0 [OPTIONS] <INFILE/INDIR> 
 
 EOF
 

@@ -10,6 +10,7 @@ ARG DEFAULT_USER=signer
 ARG PROJECT_DIR=/project
 
 ENV APK_PATCH_DIR="/usr/local/share/apksign-helper/patches" \
+    PROJECT_HOME=${PROJECT_DIR} \
     KSTORE=${PROJECT_DIR}/kstore
 
 
@@ -42,5 +43,7 @@ USER "${DEFAULT_USER}"
 ADD rootfs/ /
 
 ENTRYPOINT [ "/bin/bash" ]
+
+CMD [ "/usr/local/bin/apksign-helper.sh","-h" ]
 
 
