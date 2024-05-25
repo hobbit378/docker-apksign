@@ -19,7 +19,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           package: 'docker-apksign'
           dry-run: false
-      - name: 'Clear tagged images without version 20.16* tag'
+      - name: 'Clear tagged images without version 1* tag'
         uses: dataaxiom/ghcr-cleanup-action@main
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
