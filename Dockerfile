@@ -1,10 +1,16 @@
 ARG DISTRO=bookworm
 FROM debian:${DISTRO}
 
-LABEL org.opencontainers.image.description \
-    "Container provides tools and helper scripts necessary to (batch-)sign Android(R) APK files \
-    including tools to create and modify a keystore required for this task \
-    The provided helper script allows for the inclusion of custom patch routines"
+LABEL   org.opencontainers.image.title = \
+        "docker-apksign" \
+        org.opencontainers.image.description = \
+        "Container provides tools and helper scripts necessary to (batch-)sign Android(R) APK files \
+        including tools to create and modify a keystore required for this task \
+        The provided helper script allows for the inclusion of custom patch routines" \
+        org.opencontainers.image.authors = \ 
+        "hobbit378@gmail.com" \
+        org.opencontainers.image.url= \ 
+        "https://github.com/hobbit378/docker-apksign"
 
 ARG DEFAULT_USER=signer
 ARG PROJECT_DIR=/project
