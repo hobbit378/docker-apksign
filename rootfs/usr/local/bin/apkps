@@ -5,6 +5,18 @@ KSTORE=${KSTORE:="${PROJECT_HOME}/kstore"}
 KSPWD=${KSPWD:="stdin"}
 PATCH=${PATCH:=""}
 
+
+function load_patches()
+{
+	for p in /usr/local/lib/apkps/patches/*.inc ;
+	 do 
+		test -x ${p} && source ${p}
+		echo "Found patch file ${p} in '/usr/local/lib/apkps/patches'. Loading ..."
+	done
+
+}
+
+
 function usage() 
 {
 
@@ -42,13 +54,6 @@ function create_keystore()
 	read -p "Please enter path for to be created keystore > " -i "${KSTORE}" kspath
 	keytool -genkey -v -keystore ${kspath} -alias ${ksalias} -keyalg RSA -keysize 2048 -validity 10000
 	test -r ${kspath} && KSTORE="${kspath}" || exit
-}
-
-function apply_patch_Linphone()
-{
-	# TODO Remove/Change in order to adjust to sign other files 
-	echo "  - Updating Linphone Root Certificate resources ..."
-	zip  -f "$1" "assets/org.linphone.core/share/linphone/rootca.pem"
 }
 
 function sign() {
@@ -157,6 +162,8 @@ function startup() {
 	done
 
 	shift $((OPTIND-1))
+
+	load_patches
 
 	for file in $* ; do
 		if [ -f ${file} ] ; then 
