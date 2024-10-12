@@ -39,7 +39,7 @@ echo "${DEFAULT_USER}:${DEFAULT_USER}" | chpasswd
 WORKDIR /home/${DEFAULT_USER}
 USER ${DEFAULT_USER}
 
-ENTRYPOINT [ "/bin/bash" ]
+#ENTRYPOINT [ "/bin/bash" ]
 
 
 #
